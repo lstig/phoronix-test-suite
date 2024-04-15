@@ -55,11 +55,13 @@ then
 fi
 
 # Run any start-up hooks, such as to pre-seed environment variables or other non-default behaviors / customizations
-if [ -d pts-core/hooks/startup ]
+if [ -d pts-core/hooks/startup ] && [ -z ${PTS_DISABLE_STARTUP_HOOKS+x} ]
 then
+	# allow calling phoronix-test-suite from startup scripts
+	export PTS_DISABLE_STARTUP_HOOKS=1
 	for file in pts-core/hooks/startup/*.sh
 	do
-		./$file
+		./"$file"
 	done
 fi
 
