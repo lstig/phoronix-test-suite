@@ -123,7 +123,8 @@ class pts_result_viewer_embed
 		self::process_result_modify_pre_render($result_file, $this->can_modify_results, $this->can_delete_results);
 		$result_file->avoid_duplicate_identifiers();
 		$extra_attributes = null;
-		$html_options = self::get_html_options_markup($result_file, $_REQUEST, $this->result_public_id, $this->can_delete_results);
+		// this is busted when trying to compare multiple results - it's just an infinitely recursive function
+		// $html_options = self::get_html_options_markup($result_file, $_REQUEST, $this->result_public_id, $this->can_delete_results);
 		self::process_request_to_attributes($_REQUEST, $result_file, $extra_attributes);
 		$PAGE .= self::get_html_sort_bar($result_file, $_REQUEST);
 		$PAGE .= '<h1 id="result_file_title" placeholder="Title">' . pts_strings::sanitize($result_file->get_title()) . '</h1>';

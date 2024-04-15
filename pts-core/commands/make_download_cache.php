@@ -135,7 +135,7 @@ class make_download_cache implements pts_option_interface
 		}
 
 		$cached_tests = array();
-		foreach(pts_openbenchmarking::available_tests(true, true) as $test)
+		foreach(pts_openbenchmarking::available_tests(true, false) as $test)
 		{
 			if(pts_test_install_request::test_files_in_install_dir($test) == false)
 			{
@@ -147,6 +147,7 @@ class make_download_cache implements pts_option_interface
 
 		file_put_contents($dc_write_directory . 'pts-download-cache.json', json_encode($json_download_cache, (defined('JSON_PRETTY_PRINT') ? JSON_PRETTY_PRINT : 0)));
 		echo PHP_EOL;
+
 	}
 }
 
